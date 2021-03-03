@@ -86,6 +86,24 @@ class Matrix(val strok: Int, val stolb : Int, val variant : Boolean){
     fun returnMatrix() : ArrayList<ArrayList<Int>>{
         return array
     }
+    fun returnIndex(i : Int, j : Int) : Int{
+        return array[i][j]
+    }
+    fun matrixMultiplication( B : Matrix){
+        val matrixC = ArrayList<ArrayList<Int>>()
+        for (i in 0 until strok){
+            matrixC.add(ArrayList())
+            for (j in 1..stolb)
+                matrixC[i].add(0)
+        }
+
+        for (i in 0 until strok){
+            for (j in 0 until stolb)
+                matrixC[i][j] = array[i][j] + B.returnIndex(i,j)
+        }
+        println(matrixC.toString())
+
+    }
 
 }
 
@@ -98,4 +116,9 @@ fun main(){
     var obj = Matrix(5,5,false)
     println(obj.toString())
     println("Determinant = ${obj.determinant(obj.returnMatrix(), obj.returnRows(), obj.returnColums())}")
+    var A = Matrix(3,3,false)
+    var B = Matrix(3,3,false)
+    println(A.toString())
+    println(B.toString())
+   A.matrixMultiplication(B)
 }
